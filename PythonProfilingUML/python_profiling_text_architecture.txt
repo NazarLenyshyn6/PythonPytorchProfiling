@@ -1,0 +1,86 @@
+			Python Profiling section Object Orientated Desing
+
+So the first main idea is to divide python profiling into 2 main sections:
+	Python functions profiling
+	Python classes profiling
+
+and build all required functionalities for them separately so we will follow interface segregation principle, and ever sigle section will have its own main idea and responsibilities it accomplish.
+
+—------------------------------------------------------------------------------------------------------------------------
+
+			Python Functions Profiling section
+
+We will divide python function profiling into 3 main building blocks:
+	Time Profiling (Execution Time Profiling)
+	Memory Profiling
+	Call Graph Profiling
+
+
+			Python Classes Profiling section
+
+ We will divide python classes profiling into 4 main building blocks:
+	Time Profiling (Execution Time Profiling)
+	Memory Profiling 
+	Object Lifetime Profiling
+	Call Graph Profiling
+
+—------------------------------------------------------------------------------------------------------------------------
+
+	      Python Functions Time Profiling (Execution Time Profiling)
+
+We will divide python functions time profiling into 4 main building blocks:
+	TimeProfiler – profiling with time module
+	TImeItProfiler – profiling with timeit module
+	LineByLineProfiler – profiling with line_profiler module
+	GrapthProfiler – profiling with cProfile module
+
+
+			Python Functions Memory Profiling
+
+We will divide python functions profiling into 3 main building blocks
+	PeakMemoryProfiler – profiling with tracemalloc module
+	ObjectAllocationProfiler – profiling with pympler module
+	PerLineMemoryProfiler – profiling with memory_profiler module
+
+			Python Call Graph Profiling
+
+We will divide python functions profiling into 2 main building blocks
+	FunctionCallProfiler – profiling with cProfile, pstats module
+	CallGraphsProfiler – profiling with pycallgraph2 module
+
+—------------------------------------------------------------------------------------------------------------------------
+				
+				Python Classes Time Profiling
+
+We will divide python classes time profiling into 5 main building blocks
+	TimeProfiler – profiling with time, timeit modules
+	FullClassProfiler – profiling with cProfile, pstats
+	LineByLineProfiler –  profiling with line_profiler
+	HierarchicalCallTimingProfiler – profiling with pyinstrument
+	MultithreadingMultiprocessingProfiler – profiling with yappi
+
+				Python Classes Memory Profiling
+
+We will divide python classes time profiling into 5 main building blocks
+	ObjectMemoryProfiler – profiling with sys, pympler modules
+	MemoryOverTimeProfiler – profiling with tracemalloc modules
+	LineByLineMemoryProfiler –  profiling with memory_profiler
+	LargeObjectsProfiler – profiling with guppy3
+	VisualizedMemoryLeakProfiler – profiling with objgraph
+
+
+			    Python Classes Object Lifetime Profiling
+
+We will divide python classes time profiling into 3 main building blocks
+	ObjectCreationDelitionProfiler – profiling with weakref, gc, tracemalloc modules
+	RetainedObjectsProfiler – profiling with objgraph, gc modules
+	DymanicObectLifeTimeProfiler - profiling with pympler modules
+
+
+			    Python Classes Call Grapth Profiling
+
+We will divide python classes time profiling into 4 main building blocks
+	VisualizingCallGraphProfiler – profiling with pycallgraph2, pycallgraph modules
+	StaticCallGraphProfiler – profiling with pyan
+	DynamicCallGraphProfiler – profiling with scalene modules
+	RealTimeCallGraphProfiler – profiling with viztracer modules
