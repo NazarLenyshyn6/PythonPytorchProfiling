@@ -84,3 +84,20 @@ We will divide python classes time profiling into 4 main building blocks
 	StaticCallGraphProfiler – profiling with pyan
 	DynamicCallGraphProfiler – profiling with scalene modules
 	RealTimeCallGraphProfiler – profiling with viztracer modules
+
+
+		Python Functions. Time Profiling.  TimeProfiler(time) OOD
+Classes:
+	(ABC) TimeProfilerI
+	BaseTimeProfiler
+	PreciseTimerProfiler
+	CPUTimeProfiler
+	ThreadTimeProfiler
+	MonotonicTimeProfiler
+	TimeProfilerDecorator
+	
+					Project Architecture
+	Python Profiling
+	PyTorch Profiling
+	Utils / Internal
+

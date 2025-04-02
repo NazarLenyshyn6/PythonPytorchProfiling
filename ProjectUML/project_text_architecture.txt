@@ -1,0 +1,7 @@
+
+									Project Architecture
+
+We will have 3 building blocks:
+	Python Profiling
+	PyTorch Profiling
+	Utils
