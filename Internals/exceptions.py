@@ -23,4 +23,10 @@ class InvalidProfilerNameError(Exception):
     ''' Exception which will be raise when provided invalid type of profiler'''
     def __init__(self, provided_profiler_name: Any, avaliable_profilers: Dict):
         super().__init__(f'Profiler name has to be one of {avaliable_profilers}, got instead: {provided_profiler_name}.')
+  
+        
+class InvalidContextError(Exception):
+    ''' Exceptoin which will be raise when as context provided anything but not dictionary'''
+    def __init__(self, provided_context: Any):
+        super().__init__(f'Context has to be provovided as dictionary, got instead: {type(provided_context)}')
         
