@@ -1,8 +1,10 @@
+import inspect
 from abc import ABC, abstractmethod
 from typing import Callable
 from PythonProfiling.PythonFunctionsProfiling.fTimeProfiling.time_profiling import *
 from Internals.exceptions import *
 from functools import wraps
+from Internals.checks import check_strategy, check_strategy_name
 
 
 # Implementatino of the interface of python functions time profiler decorator
@@ -27,17 +29,16 @@ class fTimeProfilerDecoratorI(ABC):
         
     @classmethod
     def add_time_profiler(cls, time_profiler: fTimeProfilerI, time_profiler_name: str) -> None:
-        if not inspect.isclass(time_profiler) or not issubclass(time_profiler, fTimeProfilerI):
-            raise InvalidProfilerError(provided_profiler=time_profiler,
-                                       profiler_interface=fTimeProfilerI)
+        check_strategy(strategy=time_profiler,
+                       interface=fTimeProfilerI,
+                       exception_name='InvalidTimeProfilerError')
         
-        if not isinstance(time_profiler_name, str):
-            raise InvalidProfilerNameError(provided_profiler_name=time_profiler_name,
-                                           valid_profilers_names=cls._avaliable_time_profilers.keys())
+        check_input_type(provided_input=time_profiler_name,
+                         required_input_type=str,
+                         exception_name='InvalidTimeProfilerNameError')
         
         cls._avaliable_time_profilers[time_profiler_name] = time_profiler
-        print(f'{time_profiler.__name__} has been added as {time_profiler_name}')
-        
+        print(f'{time_profiler.__name__} has been added as {time_profiler_name}')  
         
     @classmethod
     def remove_time_profiler(cls, time_profiler_name: str) -> None:
@@ -56,31 +57,25 @@ class fTimeProfilerDecorator(fTimeProfilerDecoratorI):
     
     
     def __init__(self, time_profiler_name: str = 'base_time_profiler') -> Exception | None:
-        if not time_profiler_name in self._avaliable_time_profilers:
-            raise NonExistingProfilerError(non_existing_profiler_name=time_profiler_name,
-                                           avaliable_profilers=self._avaliable_time_profilers.keys())
+        check_strategy_name(strategy_name=time_profiler_name,
+                            avaliable_strategies=self._avaliable_time_profilers.keys(),
+                            exception_name='NonExistingTimeProfilerError')
         
         self.time_profiler = self._avaliable_time_profilers[time_profiler_name]
         
     
     def change_profiler(self, time_profiler_name: str) -> Exception | None:
-        if not isinstance(time_profiler_name, str):
-            raise InvalidProfilerNameError(provided_profiler_name=time_profiler_name,
-                                           valid_profilers_names=self._avaliable_time_profilers.keys())
-        
-        if not time_profiler_name in self._avaliable_time_profilers:
-            raise NonExistingProfilerError(non_existing_profiler_name=time_profiler_name,
-                                           avaliable_profilers=self._avaliable_time_profilers.keys())
-        
+        check_strategy_name(strategy_name=time_profiler_name,
+                            avaliable_strategies=self._avaliable_time_profilers.keys(),
+                            exception_name='NonExistingTimeProfilerError')
+
         self.time_profiler = self._avaliable_time_profilers[time_profiler_name]
  
-  
     def __call__(self, func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             return self.time_profiler.profile(func, *args, **kwargs)
         return wrapper    
-    
-    
+
     def __repr__(self) -> str:
         return f'fTimeProfilerDecorator(time_profiler={self.time_profiler.__name__})'
