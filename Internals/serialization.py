@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from typing import Any
 from Internals.execution_guards import safe_serialization
 from Internals.checks import *
+from Internals.profiling_enums import ProfilingOutputFormat, SerializationStrategy
 
 
 # Intorducing interface of Data Serialization class
@@ -53,25 +54,25 @@ class YAMLSerializer(DataSerializerI):
         
 # Implementation of the class which will ...
 class Serializer:
-    _avaliable_serializers = {'JSON': JSONSerializer,
-                             'TXT': TXTSerializer,
-                             'YAML': YAMLSerializer}  
+    _avaliable_serializers = {SerializationStrategy.JSON: JSONSerializer,
+                             SerializationStrategy.TXT: TXTSerializer,
+                             SerializationStrategy.YAML: YAMLSerializer}  
         
     @classmethod
-    def add_serializer(cls, serializer: DataSerializerI, serializer_name: str):
+    def add_serializer(cls, serializer: DataSerializerI, serializer_name: SerializationStrategy):
         check_strategy(strategy=serializer,
                        interface=DataSerializerI,
                        exception_name='InvalidSerializerError')
         
         check_input_type(provided_input=serializer_name,
-                         required_input_type=str,
+                         required_input_type=SerializationStrategy,
                          exception_name='InvalidSerializerName')
             
         cls._avaliable_serializers[serializer_name] = serializer
         
         
     @classmethod
-    def remove_serializer(cls, serializer_name: str):
+    def remove_serializer(cls, serializer_name: SerializationStrategy):
         if serializer_name in cls._avaliable_serializers:
             del cls._avaliable_serializers[serializer_name]
        
@@ -82,7 +83,13 @@ class Serializer:
     
     
     @classmethod
-    def save(cls, data: Any, file_path: str, mode='w', encoding: str = 'utf-8', serializer_name: str = 'TXT'):
+    def save(cls, 
+             data: Any, 
+             file_path: str, mode='w', 
+             encoding: str = 'utf-8', 
+             serializer_name: SerializationStrategy = SerializationStrategy.TXT
+             ) -> None:
+        
         check_strategy_name(strategy_name=serializer_name,
                             avaliable_strategies=cls._avaliable_serializers.keys(),
                             exception_name='NonExistingSerializerError')

@@ -11,12 +11,7 @@ def check_strategy(strategy: type, interface: type, exception_name: str):
                                interface=interface)
     
     
-def check_strategy_name(strategy_name: str, avaliable_strategies: dict, exception_name: str):
-  if not isinstance(strategy_name, str):
-    raise InvalidInputType(exception_name=exception_name,
-                           input=strategy_name,
-                           required_input_type=str)
-    
+def check_strategy_name(strategy_name: str, avaliable_strategies: dict, exception_name: str):    
   if not strategy_name in avaliable_strategies:
     raise InvalidStrategyNameError(exception_name=exception_name,
                                    strategy_name=strategy_name,

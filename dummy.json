@@ -1,0 +1,9 @@
+{
+    "profiler": "<class 'PythonProfiling.PythonFunctionsProfiling.fTimeProfiling.time_profiling.fPreciseTimeProfiler'>",
+    "profiled_func": "<function hello at 0x7f9d7d08cdc0>",
+    "func_args": "('mark',)",
+    "func_kwargs": "{}",
+    "func_result": "1",
+    "func_execution_time": "0.0005218479782342911",
+    "func_exceptions": "None"
+}

@@ -118,21 +118,4 @@ class fMonotonicTimeProfiler(fTimeProfilerI):
                                     func_execution_time=time_profiler.func_execution_time,
                                     func_exceptions=time_profiler.func_exception)
 
-# Idea to implement
-# class ProfilingObserver(ABC):
-#     @abstractmethod
-#     def notify(self, result: fTimeProfilingResult): ...
-
-# class ConsoleLogger(ProfilingObserver):
-#     def notify(self, result): print(result.profiling_summary)
-
-# class JSONFileLogger(ProfilingObserver):
-#     def notify(self, result):
-#         with open("logs/profile.json", "a") as f:
-#             f.write(result.summary.to_json())
-
-# # Then inside your profiler
-# for observer in fTimeProfilerDecorator.observers:
-#     observer.notify(result)
-
     

@@ -1,9 +1,0 @@
-{
-    "profiler": "<class 'PythonProfiling.PythonFunctionsProfiling.fTimeProfiling.time_profiling.fBaseTimeProfiler'>",
-    "profiled_func": "<function say_hello at 0x7f90ab50e290>",
-    "func_args": "()",
-    "func_kwargs": "{'name': 'bob'}",
-    "func_result": "1",
-    "func_execution_time": "0.00010609626770019531",
-    "func_exceptions": "None"
-}

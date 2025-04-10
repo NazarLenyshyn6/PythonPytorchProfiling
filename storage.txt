@@ -1,0 +1,7 @@
+profiler: <class 'PythonProfiling.PythonFunctionsProfiling.fTimeProfiling.time_profiling.fBaseTimeProfiler'>
+profiled_func: <function calculation at 0x7f9ec42e7be0>
+func_args: ()
+func_kwargs: {'number': 0}
+func_result: None
+func_execution_time: 5.245208740234375e-06
+func_exceptions: division by zero

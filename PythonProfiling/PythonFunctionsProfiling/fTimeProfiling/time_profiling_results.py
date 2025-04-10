@@ -4,6 +4,7 @@ from types import FunctionType, BuiltinFunctionType
 from typing import Any
 from Internals.serialization import Serializer
 from Internals.checks import check_input_type
+from Internals.profiling_enums import ProfilingOutputFormat
 
 
 # Interface of the class which will store python functions time profiling results
@@ -26,27 +27,19 @@ class fTimeProfilingResultI(ABC):
     def remove_context(self, context_element: any):
         if context_element in self.__dict__:
             del self.__dict__[context_element]
-              
-    def to_json(self, file_path: str, mode='w', encoding: str = 'utf-8'):
+            
+    def dump(self, 
+             file_path: str, 
+             mode='w', 
+             encoding: str = 'utf-8', 
+             extension: ProfilingOutputFormat = ProfilingOutputFormat.TXT
+             ) -> None:
+        
         Serializer.save(data=self.profiling_data_str, 
                         file_path=file_path, 
                         mode=mode, 
                         encoding=encoding, 
-                        serializer_name='JSON')
-        
-    def to_txt(self, file_path: str, mode='w', encoding: str = 'utf-8'):
-         Serializer.save(data=self.profiling_data_str, 
-                         file_path=file_path, 
-                         mode=mode, 
-                         encoding=encoding, 
-                         serializer_name='TXT')
-        
-    def to_yaml(self, file_path: str, mode='w'):
-         Serializer.save(data=self.profiling_data_str, 
-                         file_path=file_path, 
-                         mode=mode,
-                         serializer_name='YAML')
-         
+                        serializer_name=extension)         
                  
 # Implementation of class which will store result of function time profiling with time module
 @dataclass
